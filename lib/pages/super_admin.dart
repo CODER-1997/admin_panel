@@ -1,16 +1,16 @@
 
+import 'package:admin_version_2/pages/discounts/discounts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 
-import 'companies.dart';
-import 'couriers.dart';
+import 'companies/companies.dart';
 
-class HomePage extends StatelessWidget {
-  List categories = ['Firmalar', 'Kuryerlar'];
+class SuperAdmin extends StatelessWidget {
+  List categories = ['Firmalar', 'Aksiyalar'];
   
-  RxList pages=[Companies(),Couriers()].obs;
+  RxList pages=[Companies(),Discounts()].obs;
 
   RxInt selectedPage=0.obs;
 
@@ -34,14 +34,14 @@ class HomePage extends StatelessWidget {
                             children: [
                               Container(
                                   child: Image.asset(
-                                    'logo.png',
+                                    'assets/logo.png',
                                     width: 120,
                                   )),
                               SizedBox(
                                 width: 8,
                               ),
                               Text(
-                                'Aqua water delivery',
+                                'Aqua12 water delivery',
                                 style: TextStyle(
                                     color: Colors.blueAccent,
                                     fontWeight: FontWeight.w800,
