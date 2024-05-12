@@ -110,5 +110,28 @@ class CompaniesController extends GetxController {
     }
     isLoading.value = false;
   }
+  void deleteCompany(String documentId) async {
+    isLoading.value = true;
 
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+    // Function to update a specific document field by document ID
+    try {
+      isLoading.value = true;
+
+      // Reference to the document
+      DocumentReference documentReference =_firestore.collection('waterCompanies').doc(documentId);
+
+
+      // Update the desired field
+      await documentReference.delete();
+      print('Updated succesfully');
+      isLoading.value = false;
+      Get.back();
+    } catch (e) {
+      print('Error updating document field: $e');
+      isLoading.value = false;
+    }
+    isLoading.value = false;
+  }
 }

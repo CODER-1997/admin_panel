@@ -14,3 +14,5 @@ const Color  homeBlack= Color(0xFF393D3F);
 const Color  homeBlackLight= Color(0xFF595959);
 const Color  homePagebgBlack= Color(0xff1F2421);
 const Color  cardColor= Color(0xff323536);
+const Color  dashBoardColor= Color(0xff232323);
+const Color  lightGrey= Color(0xff696969);

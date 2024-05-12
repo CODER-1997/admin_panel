@@ -1,4 +1,6 @@
+import 'package:admin_version_2/constants/theme.dart';
 import 'package:admin_version_2/pages/companies/company_history.dart';
+import 'package:admin_version_2/utils/utils.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,8 +22,10 @@ class Companies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffdadada),
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+        elevation: 1,
+        backgroundColor: CupertinoColors.white,
         actions: [
           FilledButton.icon(
               onPressed: () {
@@ -211,13 +215,13 @@ class Companies extends StatelessWidget {
                     },
                     child: Container(
                       margin: EdgeInsets.all(8),
-                      padding: EdgeInsets.all(12),
+                      padding: EdgeInsets.all(16),
                       decoration: BoxDecoration(
                           color: CupertinoColors.white,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(4),
                           border: Border.all(
-                            color: Colors.blueAccent,
-                            width: 2,
+                            color: lightGrey,
+                            width: .1,
                           )),
                       child: Column(
                         children: [
@@ -243,10 +247,10 @@ class Companies extends StatelessWidget {
                                   //     :
                                   Container(
                                     alignment: Alignment.center,
-                                    height: 100,
-                                    width: 100,
+                                    height: 77,
+                                    width: 77,
                                     decoration: BoxDecoration(
-                                        color: Colors.blue,
+                                        color: randomColor(),
                                         borderRadius: BorderRadius.circular(111)),
                                     child: Text(
                                       element['items']['companyName']
@@ -446,7 +450,45 @@ class Companies extends StatelessWidget {
                                           },
                                         );
                                       },
-                                      icon: Icon(Icons.edit))
+                                      icon: Icon(Icons.edit)),
+                                  IconButton(onPressed: (){
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Row(
+                                            children: [
+                                              Icon(Icons.sentiment_dissatisfied, color: Colors.red),
+                                              SizedBox(width: 10),
+                                              Text("O'chirish"),
+                                            ],
+                                          ),
+                                          content: Text("Rostdanham o'chirilsinmi ? "),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () {
+
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text('Bekor qilish'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                // Perform delete operation
+                                                companiesController
+                                                    .deleteCompany(element
+                                                    .id
+                                                    .toString());
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text("O'chirish"),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+
+                                  }, icon: Icon(Icons.delete,color: Colors.red,))
                                 ],
                               )
                             ],
